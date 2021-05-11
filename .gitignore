@@ -1,5 +1,5 @@
 .vscode
 
-*.csv
+input
 
 test.py

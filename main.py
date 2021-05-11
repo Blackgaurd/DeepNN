@@ -6,7 +6,7 @@ import seaborn as sns
 np.random.seed(1)
 
 print("Reading training data...")
-train_data = pd.read_csv("train.csv").to_numpy()
+train_data = pd.read_csv("input/train.csv").to_numpy()
 print("Finished reading training data.")
 #print("Reading test data...")
 #test_data = pd.read_csv("test.csv").to_numpy()
