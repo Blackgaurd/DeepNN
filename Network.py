@@ -5,8 +5,8 @@ import csv
 
 class Network:
     # input layer -> hiddenlayer (1) -> output layer
-    def __init__(self, train_file_path, hidden_layer_size=256, batch_size=500, iterations=100, learning_rate=0.1):
-        np.random.seed(2)
+    def __init__(self, train_file_path, hidden_layer_size=256, batch_size=500, iterations=500, learning_rate=0.1):
+        np.random.seed(1)
 
         # read files/data
         print("Starting to read train data...")
@@ -55,9 +55,6 @@ class Network:
         return x > 0
 
     def softmax(self, x):
-        return np.exp(x - np.max(x)) / np.exp(x - np.max(x)).sum()
-
-    def softmax2(self, x):
         return np.exp(x) / sum(np.exp(x))
 
     ### other helper functions
@@ -83,7 +80,7 @@ class Network:
 
         # hidden layer -> output layer
         self.z2 = self.w2.dot(self.a1) + self.b2
-        self.a2 = self.softmax2(self.z2)
+        self.a2 = self.softmax(self.z2)
 
     def back_prop(self, inputs, expected):
         # output layer -> hidden layer
@@ -109,7 +106,7 @@ class Network:
         self.w2 = self.w2 - self.learning_rate * self.dw2
         self.b2 = self.b2 - self.learning_rate * self.db2
 
-    def gradient_descent(self, report_accuracy=10):
+    def gradient_descent(self, report_accuracy=10, track_accuracy=False):
         for iteration in range(1, self.iterations + 1):
             inputs, expected = self.get_batch_rand()
             self.forward_prop(inputs)
@@ -130,7 +127,7 @@ class Network:
         print("Accuracy\t:", np.sum(predictions == expected) / expected.size)
 
     # predictions with random values
-    def make_prediction_rand(self, show_image=False):
+    def predict_rand(self, show_image=False):
         index = np.random.choice(self.train.shape[0], 1, replace=False)
         choice = self.train[index]
 
@@ -142,7 +139,7 @@ class Network:
         a1 = self.relu(z1)
 
         z2 = self.w2.dot(a1) + self.b2
-        a2 = self.softmax2(z2)
+        a2 = self.softmax(z2)
 
         # get predictions
         prediction = self.get_predictions(a2)
@@ -158,34 +155,27 @@ class Network:
             print(f'Expected\t: {int(expected)}\nPredicted\t: {int(prediction)}\nConfidence\t: {round(max(a2.T[0]) * 100, 2)}%\n')
 
     # predictions with test data
-    def make_prediction_test(self, test_file_path, output_file_path):
+    def predict_sub(self, test_file_path, output_file_path):
         # read input file
         print("Starting to read test data...")
         test = pd.read_csv(test_file_path).to_numpy()
         print("Finished reading test data")
 
-        # csv file rows
-        fields = ["ImageId", "Label"]
-        rows = []
+        inputs = test.T * 0.99 / 255
 
-        for image_id in range(test.shape[0]):
-            inputs = test[image_id].T
+        # forward propagation without affecting actual weights or values
+        z1 = self.w1.dot(inputs) + self.b1
+        a1 = self.relu(z1)
 
-            # forward propagation without affecting actual weights or values
-            z1 = self.w1.dot(inputs) + self.b1
-            a1 = self.relu(z1)
+        z2 = self.w2.dot(a1) + self.b2
+        a2 = self.softmax(z2)
 
-            z2 = self.w2.dot(a1) + self.b2
-            a2 = self.softmax2(z2)
-
-            prediction = self.get_predictions(a2)
-
-            # append to submissions
-            rows.append([image_id, prediction])
+        predictions = self.get_predictions(a2)
 
         # write to output file
-        with open(output_file_path, "w") as f:
+        rows = list(enumerate(predictions, 1))
+        with open(output_file_path, "w", newline="") as f:
             writer = csv.writer(f)
-            writer.writerow(fields)
+            writer.writerow(["ImageId", "Label"])
             writer.writerows(rows)
 
