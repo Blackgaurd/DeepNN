@@ -2,7 +2,7 @@
 
 Digit recognizer neural network made for [this](kaggle.com/c/digit-recognizer). Uses MNIST data.
 
-The network (`Network.py`) currently has a single hidden layer, with parameters for variable parameters.
+The network (`Network.py`) currently has a single hidden layer, with variable parameters.
 
 Uses ReLU for activation, but sigmoid functions are also present.
 
