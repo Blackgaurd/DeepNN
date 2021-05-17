@@ -3,7 +3,7 @@ import time
 
 from Network import Network
 
-network_number = "02"
+network_number = "03"
 
 # read params
 with open(f"networks/{network_number}/params.yaml", "r") as f:

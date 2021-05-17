@@ -179,3 +179,9 @@ class Network:
             writer.writerow(["ImageId", "Label"])
             writer.writerows(rows)
 
+    # record weights
+    def record_weights(self, w1, b1, w2, b2):
+        np.savetxt(w1, self.w1, delimiter=",", newline="\n\n")
+        np.savetxt(b1, self.b1, delimiter=",", newline="\n\n")
+        np.savetxt(w2, self.w2, delimiter=",", newline="\n\n")
+        np.savetxt(b2, self.b2, delimiter=",", newline="\n\n")
