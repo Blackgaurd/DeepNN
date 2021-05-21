@@ -1,0 +1,4 @@
+hidden_layer_size: 10
+batch_size: 300
+iterations: 400
+learning_rate: 0.1
