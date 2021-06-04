@@ -1,6 +1,6 @@
 # Digit Recognizer
 
-Digit recognizer neural network made for [this](kaggle.com/c/digit-recognizer). 
+Digit recognizer neural network made for [this](kaggle.com/c/digit-recognizer).
 
 As the name suggests, it can recognize hand written digits.
 

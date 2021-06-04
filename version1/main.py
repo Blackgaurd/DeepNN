@@ -2,7 +2,7 @@ import yaml
 import time
 import numpy as np
 
-from Network import Network
+from network import Network
 
 network_number = "04"
 
