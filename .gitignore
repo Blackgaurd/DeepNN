@@ -1,8 +1,14 @@
+# vscode
 .vscode
+
+# python
+/__pycache__
+version1/__pychache__
 
 # search for MNIST dataset on google
 input
 
+# test files
 test.py
 
 # need weights stored as txt files for another project
