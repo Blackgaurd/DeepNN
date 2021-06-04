@@ -4,7 +4,7 @@ import numpy as np
 
 from network import Network
 
-network_number = "04"
+network_number = "05"
 
 # read params
 with open(f"networks/{network_number}/params.yaml", "r") as f:

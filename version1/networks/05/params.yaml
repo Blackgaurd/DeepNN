@@ -1,0 +1,5 @@
+hidden_layer_size: 300
+batch_size: 500
+iterations: 7000
+learning_rate: 0.1
+# using float 32 for train and test data instead of float 64

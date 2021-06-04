@@ -63,6 +63,7 @@ class Network:
         choices = self.train[indices]
 
         inputs = choices.T[1:] * 0.99 / 255 + 0.01
+        inputs = inputs.astype("float32")
         expected = choices.T[0]
 
         return inputs, expected
@@ -156,6 +157,7 @@ class Network:
         print("Finished reading test data")
 
         inputs = test.T * 0.99 / 255
+        inputs = inputs.astype("float32")
 
         # forward propagation without affecting actual weights or values
         z1 = self.w1.dot(inputs) + self.b1
