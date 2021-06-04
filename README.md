@@ -1,6 +1,8 @@
 # Digit Recognizer
 
-Digit recognizer neural network made for [this](kaggle.com/c/digit-recognizer). The network is built using only libraries that are essential. In other words, libraries like tensorflow, keras, and pytorch are all not used.
+Digit recognizer neural network made for [this](kaggle.com/c/digit-recognizer). 
+
+As the name suggests, it can recognize hand written digits.
 
 ## How to use
 

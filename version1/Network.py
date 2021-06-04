@@ -89,11 +89,6 @@ class Network:
         self.dw2 = self.dz2.dot(self.a1.T) / self.batch_size
         self.db2 = np.sum(self.dz2) / self.batch_size
 
-        ## update weights and biases
-        self.w2 = self.w2 - self.learning_rate * self.dw2
-        self.b2 = self.b2 - self.learning_rate * self.db2
-
-
         # hidden layer -> input layer
         self.dz1 = self.w2.T.dot(self.dz2) * self.relu_deriv(self.z1)
         self.dw1 = self.dz1.dot(inputs.T) / self.batch_size
@@ -102,7 +97,6 @@ class Network:
         ## update weights and biases
         self.w1 = self.w1 - self.learning_rate * self.dw1
         self.b1 = self.b1 - self.learning_rate * self.db1
-
         self.w2 = self.w2 - self.learning_rate * self.dw2
         self.b2 = self.b2 - self.learning_rate * self.db2
 
@@ -185,3 +179,6 @@ class Network:
         np.savetxt(b1, self.b1, delimiter=",", newline="], [", header="[[", footer="]]")
         np.savetxt(w2, self.w2, delimiter=",", newline="], [", header="[[", footer="]]")
         np.savetxt(b2, self.b2, delimiter=",", newline="], [", header="[[", footer="]]")
+
+test = Network("../input/train.csv", 50, 500, 1000)
+test.gradient_descent(100)
