@@ -156,7 +156,7 @@ class Network:
         test = pd.read_csv(test_file_path).to_numpy()
         print("Finished reading test data")
 
-        inputs = test.T * 0.99 / 255
+        inputs = test.T * 0.99 / 255 + 0.01
         inputs = inputs.astype("float32")
 
         # forward propagation without affecting actual weights or values
@@ -181,6 +181,3 @@ class Network:
         np.savetxt(b1, self.b1, delimiter=",", newline="], [", header="[[", footer="]]")
         np.savetxt(w2, self.w2, delimiter=",", newline="], [", header="[[", footer="]]")
         np.savetxt(b2, self.b2, delimiter=",", newline="], [", header="[[", footer="]]")
-
-test = Network("../input/train.csv", 50, 500, 1000)
-test.gradient_descent(100)
