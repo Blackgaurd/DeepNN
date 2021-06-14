@@ -2,8 +2,7 @@
 .vscode
 
 # python
-/__pycache__
-version1/__pychache__
+__pycache__/
 
 # search for MNIST dataset on google
 input
