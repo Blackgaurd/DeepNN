@@ -1,21 +1,14 @@
 # Digit Recognizer
-**Contents**
-- [Digit Recognizer](#digit-recognizer)
-  - [Version 1](#version-1)
-  - [Version 2](#version-2)
-  - [Version 3](#version-3)
 
-Digit recognizer neural network made for [this](kaggle.com/c/digit-recognizer).
+Neural networks trained to recognize hand written digits from the [MNIST DATABASE](http://yann.lecun.com/exdb/mnist/).
 
-As the name suggests, it can recognize hand written digits.
+Each version has its own unique approach.
 
-## Version 1
-A very simple neural network that has 1 hidden layer. Uses mini-batch gradient descent and ReLU for activation.
+## Versions
 
-[networks](version1/networks), a folder with a few models. Just me experimenting with parameters.
+Accuracy from submitting through [kaggle](https://www.kaggle.com/c/digit-recognizer).
 
-## Version 2
-An improved neural network that allows for more intuitive use and the addition of more layers with different activation functions.
-
-## Version 3
-Work in progress...
+| Version # | Max achieved accuracy | Overview |
+| :---: | :---: | --- |
+| 1 | 95.63% | My first attempt at making a neural network. Very crude. |
+| 2 | 95.81% | A refined version building on v1. More flexibility in layer size and quantity. |
