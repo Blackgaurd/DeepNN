@@ -62,7 +62,7 @@ class Network:
     ):
         iterations = int(np.ceil(self.layers[0]._x.shape[0] / self.batch_size))
         for epoch in range(1, epochs + 1):
-            for iteration in range(iterations):
+            for _ in range(iterations):
                 self.forward()
                 self.backward()
                 self.update()
@@ -71,7 +71,7 @@ class Network:
             if learning_rate_reduction != None:
                 assert 0 < learning_rate_reduction < 1
                 for layer in self.layers:
-                    if type(layer) != Starter and type(layer) != Ender:
+                    if type(layer) not in [Starter, Ender]:
                         layer.alpha *= learning_rate_reduction
 
             # report accuracy
