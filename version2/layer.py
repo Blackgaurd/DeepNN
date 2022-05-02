@@ -45,7 +45,7 @@ class Dense:
             self.dz,
             self.batch_size,
             self.alpha,
-        ) = (None for i in range(9))
+        ) = (None for _ in range(9))
 
     def init(self, prev, batch_size, learning_rate):
         self.w = np.random.rand(self.size, prev.size) - 0.5

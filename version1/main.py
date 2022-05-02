@@ -27,9 +27,10 @@ neural_net.predict_sub("../input/test.csv", f"networks/{network_number}/submissi
 
 # record results
 with open(f"networks/{network_number}/results.yaml", "w") as f:
-    results = {}
     time_taken = end - start
-    results["time taken"] = round(time_taken, 4)
-    results["accuracy"] = round(float(input("How'd it do?\n>>> ")) * 100, 4)
+    results = {
+        "time taken": round(time_taken, 4),
+        "accuracy": round(float(input("How'd it do?\n>>> ")) * 100, 4),
+    }
 
     yaml.dump(results, f, default_flow_style=False)
